@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+
+\usepackage{../linear}
+
+\begin{document}
+
+\coverpage{1}
+
+% hw problem 1 -----------------------------------------------------------------
+
+\begin{exercise}{1}
+    \problem{
+        The real number $x = 11/8$ has decimal representation $x_d = 1.375$ and binary represenatation $x_b = 1.011$.
+        Compute each of the following \underline{relative errors} in decimal.
+        $$ E_d = \dfrac{|x_d - chop(x_d,3)|}{x_d} \hspace{2em} E_b = \dfrac{|x_b - chop(x_b,3)|}{x_b} $$
+    }
+    \answer{
+        Let's begin with $E_d = \dfrac{|1.375 - chop(1.375,3)|}{1.375} = \dfrac{|1.375 - 1.37|}{1.375} = \dfrac{0.005}{1.375} = \dfrac{1}{275} = 0.0036 $. \parspace \parspace
+        Seperately, we can compue $E_b$.
+        In binary, the numerator is $|1.011 - chop(1.011,3)| = |1.011 - 1.01| = 0.001$.
+        Translating to decimal, we get $1/8$ for the numerator.
+        So $E_b$ is
+        $$ E_b = \dfrac{1/8}{11/8} = \dfrac{1}{8} * \dfrac{8}{11} = \dfrac{1}{11} $$
+    }
+\end{exercise}
+
+% hw problem 2 -----------------------------------------------------------------
+
+\begin{exercise}{2}
+    \problem{
+        Suppose one can compute $\sqrt x$ exactly but an error of $\delta > 0$ is incurred by some finite representation $\xhat$ of $x$. \\\\
+        \indent a) For $\delta > 0$ find a uniform upper bound on the absolute error $E_a = |\sqrt{x} - \sqrt{\xhat}|$ valid for all $x \in [0,1]$. \\\\
+        \indent b) If $\delta = 10^{-6}$ what does a) imply the upper bound on $E_a$ is on $[0,1]$?
+    }
+    \answer{ \\\\
+        \indent a) We begin by finding a uniform upper bound for the absolute error $E_a = |\sqrt x - \sqrt{\xhat} |$:
+        $$ E_a = |\sqrt{x} - \sqrt{\xhat}| = |\sqrt{x} - \sqrt{\xhat}| * \dfrac{\sqrt{x} + \sqrt{\xhat}}{\sqrt{x} + \sqrt{\xhat}} = \dfrac{|(\sqrt{x} - \sqrt{\xhat}) * (\sqrt{x} + \sqrt{\xhat})|}{\sqrt{x} + \sqrt{\xhat}} = \dfrac{|x - \xhat|}{\sqrt{x} + \sqrt{\xhat}}$$
+        \indent \hspace{1em} Now we substitute $\xhat = x + \delta$:
+        $$ E_a = \dfrac{|x - x - \delta|}{\sqrt{x} + \sqrt{x + \delta}} = \dfrac{\delta}{\sqrt{x} + \sqrt{x + \delta}} $$
+        \indent \hspace{1em} Since $x \in [0,1]$,
+        $$ E_a \leq max \{ E_a \} = E(0, \delta) = E(\delta) = \dfrac{\delta}{\sqrt{0} + \sqrt{0 + \delta}} = \dfrac{\delta}{\sqrt{\delta}} = \sqrt{\delta} $$
+        \indent \hspace{1em} Therefore, $E_a \leq E(\delta) = \sqrt{\delta} \hspace{0.5em} \forall x \in [0,1]$. \\\\
+        \indent b) If $\delta = 10^{-6}$, then part a) implies that the upper bound for $E_a$ on $[0,1]$ is
+        $$ \sqrt{\delta} = \sqrt{10^{-6}} = (10^{-6})^{1/2} = 10^{-6/2} = 10^{-3} $$
+    }
+\end{exercise}
+
+% hw problem 3 -----------------------------------------------------------------
+
+\begin{exercise}{3}
+    \problem{
+        The Taylor series for $f(x) = ln(1 + x)$ is
+        $$ ln(1 + x) = \sum _{k=1}^n (-1)^{k-1} \dfrac{x^k}{k} + E_n (\zeta, x) = P_n(x) + E_n(\zeta, x) $$
+        and converges for $ x \in (-1, 1] $. \\\\
+        \indent a) Use the Alternating Series Test to bound the error $|E_n|$ by $\hat{E}_n$. Use $\hat{E}_n$ to find an $n$ sufficiently \indent \hspace{1em} large so that
+        $$ |ln(2) - P_n(1)| \leq \hat E_n \leq 10^{-6} $$
+        \indent \hspace{1em} Here $ x = 1 $. \\\\
+        \indent b) One can accelerate the series convergence rate using the following identity
+        $$ ln(2) = ln(e*2/e) = 1 + ln(2/e) = 1 + ln( 1 + (2/e - 1) ) = 1 + ln(1 + x) $$
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+\end{document}

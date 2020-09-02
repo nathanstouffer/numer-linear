@@ -1,0 +1,67 @@
+% This package defines commands and a template for homeworks in
+% Computer Science Theory (CSCI 338 at Montana State University)
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{linear}[2020/08/17 Custom HW Template Package]
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+\RequirePackage{amssymb,amsmath}
+\RequirePackage{times,psfrag,epsf,epsfig,graphics,graphicx}
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+\RequirePackage{tikz}
+
+% Options would go in this spot
+%\DeclareOption...
+
+%\ProcessOptions
+
+\titleformat{\subsection}[runin]
+{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\newcommand{\coverpage}[1] {
+	\title{M 441: Homework~#1}
+	\author{Nathan Stouffer}
+	\date{}
+	\maketitle
+}
+
+\newcommand{\header}[1] {
+	\section*{Problem #1}
+}
+
+\newcommand{\problem}[1]{
+	\noindent\textit{Problem.} #1 \\\\
+}
+
+\newcommand{\answer}[1]{
+	\noindent\textit{Answer.} #1
+}
+
+%% environment for an exercise
+
+\newenvironment{exercise}[1]
+	{
+		\newpage
+		\header{#1}
+	}
+	{
+
+	}
+
+%% useful commands for short hand
+
+% command for spacing out paragraphs in proofs
+\newcommand{\parspace}{\newline\newline\noindent}
+
+\newcommand{\triplecdot}{\cdot \cdot \cdot}				% triple center dots
+
+\newcommand{\xhat}{\hat{x}}								% symbol for x hat
+
+\newcommand{\N}{\mathbb{N}}								% symbol for the natural numbers
+\newcommand{\Z}{\mathbb{Z}}								% symbol for the integers
+\newcommand{\Q}{\mathbb{Q}}								% symbol for the rationals
+
+\endinput

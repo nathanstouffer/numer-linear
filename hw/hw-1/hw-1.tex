@@ -58,8 +58,33 @@
         \indent b) One can accelerate the series convergence rate using the following identity
         $$ ln(2) = ln(e*2/e) = 1 + ln(2/e) = 1 + ln( 1 + (2/e - 1) ) = 1 + ln(1 + x) $$
     }
-    \answer{
+    \answer{ \\\\
+        \indent a) We begin by finding a bound $\hat{E}_n$ for $|E_n|$.
+        By the Alternating Series Theorem,
+        $$ |E_n| = |f(x) - P_n(x)| \leq |a_{n+1}|$$
+        \indent \hspace{1em} So we can compute the upper bound as
+        $$ |E_n| = |(-1)^{n+1-1} \dfrac{x^{n+1}}{n+1}| = \dfrac{|x^{n+1}|}{n+1} \leq \hat{E}_n = \dfrac{1}{n+1} $$
+        \indent \hspace{1em} For $| ln(2) - P_n(1)| \leq \hat{E}_n \leq 10^{-6}$, we must have $n \geq 999999$ so that
+        $$ \hat{E}_n \leq 1/(999999 + 1) = 1/1000000 = 10^{-6} $$
+        \indent b) Using the identity $ln(2) = 1 + ln(1 + x)$ where $x = 2/e - 1$, we can accelerate the convergence.
+        \indent \hspace{1em} Consider the following table generated using MATLAB and this new formula.
 
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                $n$ &  $1 + P_n(x)$       &  $E_a = | 1 + P_n(x) - ln(2) |$     \\ \hline
+                1   &  0.735758882342885  &  0.042611701782939                  \\ \hline
+                2   &  0.700847198212544  &  0.007700017652599                  \\ \hline
+                3   &  0.694697129923282  &  0.001549949363336                  \\ \hline
+                4   &  0.693478304234465  &  0.000331123674520                  \\ \hline
+                5   &  0.693220653144671  &  0.000073472584726                  \\ \hline
+                6   &  0.693163918134727  &  0.000016737574782                  \\ \hline
+                7   &  0.693151068086924  &  0.000003887526978                  \\ \hline
+                8   &  0.693148097014804  &  0.000000916454859                  \\ \hline
+                9   &  0.693147399166433  &  0.000000218606488                  \\ \hline
+                10  &  0.693147233206223  &  0.000000052646278                  \\ \hline
+            \end{tabular}
+        \end{center}
     }
 \end{exercise}
 

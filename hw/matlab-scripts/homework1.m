@@ -8,24 +8,24 @@
 %
 %   Here we compare 
 %
-%         f(x) = sin(x)
+%         f(x) = ln(1 + x)
 %
 %   to its truncated Taylor series Pn(x).
 %
-%          x=3/4*pi
+%          x=2/e - 1
 %          N=number of nonzero terms in Pn(x)
 %
+format long;
 clear X;
 clear n;
-x=3/4*pi;
-for n=1:6
-Pn=0;
-for k=1:n
-    Pn=Pn+(-1)^(k-1)*x.^(2*k-1)./factorial(2*k-1);
-    En=abs(sin(x)-Pn);
+x=2/exp(1) - 1;
+Pn=1;
+for n=1:10
+    Pn=Pn + (-1)^(n-1) .* (x^(n)) ./ n;
+    En=abs(Pn - log(2));
+    X(n,:)=[n,Pn,En];
 end
-X(n,:)=[n,Pn,En];
-end
+X
 %
 %  To plot the "n" column versus the abosute error En
 %

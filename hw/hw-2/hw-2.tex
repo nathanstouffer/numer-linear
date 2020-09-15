@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+
+\usepackage{../linear}
+
+\begin{document}
+
+\coverpage{2}
+
+% hw problem 1 -----------------------------------------------------------------
+
+\begin{exercise}{1}
+    \problem{
+        Use Theorem 2.4 of the notes to prove
+        $$ h - sin(h) = O(h^3) \hspace{2em} as \; h \to 0 $$
+        Theorem 2.4 states that for functions $f(h)$ and $g(h)$ that are continuous near $h = 0$ and
+        $$lim_{h \to 0} \dfrac{f(h)}{g(h)} = L < \infty $$
+        then $f = O(g)$ as $ h \to 0 $.
+    }
+    \answer{
+        To show that $h - sin(h) = O(h^3)$, we will show that $lim_{h \to 0} f(h) / g(h) = L < \infty$ for some $L \in \R$.
+        $$ lim_{h \to 0} \dfrac{h - sin(h)}{h^3} = \dfrac{0 - sin(0)}{0^3} = \dfrac{0}{0} $$
+        Since the limit is $0/0$, we can apply L'Hospital's rule to say that
+        $$ lim_{h \to 0} \dfrac{h - sin(h)}{h^3} = \dfrac{1 - cos(h)}{3h^2} = \dfrac{1 - cos(0)}{3*0^2} = \dfrac{1-1}{0} = \dfrac{0}{0} $$
+        By the same reasoning, we apply L'Hospital's rule again
+        $$ lim_{h \to 0} \dfrac{h - sin(h)}{h^3} = \dfrac{sin(h)}{6h} = \dfrac{sin(0)}{6*0} = \dfrac{0}{0} $$
+        We then apply L'Hospital's rule a final time to say that
+        $$ lim_{h \to 0} \dfrac{h - sin(h)}{h^3} = \dfrac{cos(h)}{6} = \dfrac{cos(0)}{6} = \dfrac{1}{6} $$
+        Since $lim_{h \to 0} \dfrac{h - sin(h)}{h^3} = 1/6 < \infty$, we say that $h - sin(h) = O(h^3)$.
+    }
+\end{exercise}
+
+% hw problem 2 -----------------------------------------------------------------
+
+\begin{exercise}{2}
+    \problem{
+        Using Taylor series of $f(x+h)$ and $f(x-h)$ show
+        $$ f(x+h) - 2f(x) + f(x-h) = f''(x)h^2 + O(h^4) $$
+        Then, solve for $f''(x)$ to get an approximation for $f''(x)$ and state the order of the truncation error.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 3 -----------------------------------------------------------------
+
+\begin{exercise}{3}
+    \problem{
+        Let $f(x) = (x-1) (x-3) (x-4)$.
+        What root of $f(x)$ does the Bisection Method converge to on the interval $[a,b] = [0,5]$.
+        Sketch $f(x)$ and label the first two midpoint values $x_1, x_2$.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 4 -----------------------------------------------------------------
+
+\begin{exercise}{4}
+    \problem{
+        For the following three problems use modified versions of the posted $Newton.m$, $f.m$, and $df.m$ matlab files to find an approximation of a root of $f(x)$ using the indicated starting guess $x_1$.
+        For each case, print output in the three columns
+        $$ n \hspace{2em} x_n \hspace{2em} E_n \hspace{4em} (1 \leq n \leq 10) $$
+        Lastly, state if the convergence rate is linear, superlinear, or quadratic. \\\\
+        \indent a) Newton's Method: $x_1 = 4, f(x) = (x-1)^2 - 2$ \\\\
+        \indent b) Newton's Method: $x_1 = 4, f(x) = (x-1)^2$ \\\\
+        \indent c) Accelerated Newton's Method: $x_1 = 4, f(x) = (x-1)^2$ % \lambda = 2?
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 5 -----------------------------------------------------------------
+
+\begin{exercise}{5}
+    \problem{
+        Steffensen method for solving $f(x) = 0$ is defined by:
+        $$ x_{n+1} = x_n - \dfrac{f(x_n)}{g(x_n)} = x_n - F(x_n) $$
+        where
+        $$ g(x) = \dfrac{f(x + f(x)) - f(x)}{f(x)} $$
+        For simple roots $\xbar$ where $f(\xbar) \neq 0$, one can show the method has quadratic convergence.
+        Write a Matlab file Steffensen.m whose output is
+        $$ n \hspace{2em} x_n \hspace{2em} E_n $$
+        for $1 \leq n \leq 10$ for the case $f(x) = x^2 - 4$ and $x_0 = 1$. Include your code for Steffensen.m and output.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+\end{document}

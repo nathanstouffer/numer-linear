@@ -2,6 +2,6 @@ function [ output] = df(x)
 %
 % derivative of f(x)
 %
-output=3*(x-1).^2+1;
+output=2.*(x-1);
 end
 

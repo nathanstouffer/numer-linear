@@ -90,15 +90,74 @@
 \begin{exercise}{4}
     \problem{
         For the following three problems use modified versions of the posted $Newton.m$, $f.m$, and $df.m$ matlab files to find an approximation of a root of $f(x)$ using the indicated starting guess $x_1$.
-        For each case, print output in the three columns
-        $$ n \hspace{2em} x_n \hspace{2em} E_n \hspace{4em} (1 \leq n \leq 10) $$
+        For each case, print output in the three columns: $ n \;\; x_n \;\; E_n \;\;\;\; (1 \leq n \leq 10) $.
         Lastly, state if the convergence rate is linear, superlinear, or quadratic. \\\\
         \indent a) Newton's Method: $x_1 = 4, f(x) = (x-1)^2 - 2$ \\\\
         \indent b) Newton's Method: $x_1 = 4, f(x) = (x-1)^2$ \\\\
-        \indent c) Accelerated Newton's Method: $x_1 = 4, f(x) = (x-1)^2$ % \lambda = 2?
+        \indent c) Accelerated Newton's Method: $x_1 = 4, f(x) = (x-1)^2$
     }
-    \answer{
-
+    \answer{ \\\\
+        \indent a) We know $x^* = \sqrt{2} + 1$ to be a simple root of $f(x) = (x - 1)^2 - 2$.
+        Therefore, Newton's Method will
+        \indent \hspace{1em} have quadratic convergence.
+        Here is the output from my Matlab code.
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                $n$ & $x_n$             &  $E_n$             \\ \hline
+                1   & 4.000000000000000 &  1.585786437626905 \\ \hline
+                2   & 2.833333333333333 &  0.419119770960238 \\ \hline
+                3   & 2.462121212121212 &  0.047907649748117 \\ \hline
+                4   & 2.414998429894803 &  0.000784867521708 \\ \hline
+                5   & 2.414213780047198 &  0.000000217674103 \\ \hline
+                6   & 2.414213562373112 &  0.000000000000017 \\ \hline
+                7   & 2.414213562373095 &                  0 \\ \hline
+                9   & 2.414213562373095 &                  0 \\ \hline
+                10  & 2.414213562373095 &                  0 \\ \hline
+                8   & 2.414213562373095 &                  0 \\ \hline
+            \end{tabular}
+        \end{center}
+        \hspace{1.35em} b) $x^* = 1$ is the only real root of $f(x) = (x - 1)^2$ but $x^* = 1$ is not a simple root.
+        So Newton's Method \indent \hspace{1em} will have linear convergence.
+        Here is the otuput from my Matlab code.
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                $n$ & $x_n$             &  $E_n$             \\ \hline
+                1   & 4.000000000000000 &  3.000000000000000 \\ \hline
+                2   & 2.500000000000000 &  1.500000000000000 \\ \hline
+                3   & 1.750000000000000 &  0.750000000000000 \\ \hline
+                4   & 1.375000000000000 &  0.375000000000000 \\ \hline
+                5   & 1.187500000000000 &  0.187500000000000 \\ \hline
+                6   & 1.093750000000000 &  0.093750000000000 \\ \hline
+                7   & 1.046875000000000 &  0.046875000000000 \\ \hline
+                8   & 1.023437500000000 &  0.023437500000000 \\ \hline
+                9   & 1.011718750000000 &  0.011718750000000 \\ \hline
+               10   & 1.005859375000000 &  0.005859375000000 \\ \hline
+            \end{tabular}
+        \end{center}
+        \newpage
+        c) As before, $x^* = 1$ is the only real root of $f(x) = (x - 1)^2$ but it is not simple.
+        We will use accelerated \\
+        \indent \hspace{1em} Newton's Method with $\lambda = 2$ to obtain quadtratic convergence (since $x^* = 1$ has degree $2$).
+        Here is \\
+        \indent \hspace{1em} the output from my Matlab code.
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                $n$ & $x_n$ &  $E_n$ \\ \hline
+                1   &  4    & 3      \\ \hline
+                2   &  1    & 0      \\ \hline
+                3   &  NaN  & NaN    \\ \hline
+                4   &  NaN  & NaN    \\ \hline
+                5   &  NaN  & NaN    \\ \hline
+                6   &  NaN  & NaN    \\ \hline
+                7   &  NaN  & NaN    \\ \hline
+                8   &  NaN  & NaN    \\ \hline
+                9   &  NaN  & NaN    \\ \hline
+                10  &  NaN  & NaN    \\ \hline
+            \end{tabular}
+        \end{center}
     }
 \end{exercise}
 
@@ -116,8 +175,60 @@
         for $1 \leq n \leq 10$ for the case $f(x) = x^2 - 4$ and $x_0 = 1.5$. Include your code for Steffensen.m and output.
     }
     \answer{
+        The following table contains the output for my Steffensen.m file with $f(x) = x^2 - 4$ and $x_0 = 1.5$
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                $n$ & $x_n$             &  $E_n$             \\ \hline
+                1   & 1.500000000000000 &  0.500000000000000 \\ \hline
+                2   & 2.900000000000000 &  0.900000000000000 \\ \hline
+                3   & 2.468070519098922 &  0.468070519098922 \\ \hline
+                4   & 2.170472770092460 &  0.170472770092460 \\ \hline
+                5   & 2.029743067317519 &  0.029743067317519 \\ \hline
+                6   & 2.001064655955713 &  0.001064655955713 \\ \hline
+                7   & 2.000001414907090 &  0.000001414907090 \\ \hline
+                8   & 2.000000000002502 &  0.000000000002502 \\ \hline
+                9   & 2.000000000000000 &                  0 \\ \hline
+               10   &               NaN &                NaN \\ \hline
 
+            \end{tabular}
+        \end{center}
+        I changed up notation a bit in my Matlab file because I kept every file in the same directory as the Newton.m, f.m, and df.m files.
+        So I changed $f(x)$ in this problem to $g(x)$ and $g(x)$ to $h(x)$.
+        My Matlab code is split between this page and the next.
     }
 \end{exercise}
+
+\begin{Verbatim}
+    %
+    %  A "for loop" for Steffensen's method for f(x)=0
+    %
+    %   x_{n+1} = x_n + g(x_n)/h(x_n) where h(x) = (g(x + g(x)) - g(x))/g(x)
+    %
+    %  1) g.m defines the numerator function
+    %  2) h.m defines the denominator function
+    %  3) xexact is the exact root
+    %  4) m is the number of iterates
+    %
+    %  The output matrix is X with n-th row X(n,:)
+    %  The columns of X are
+    %
+    %          X(n,:) = [ n , x(n) , E_n ]
+    %
+    %  where E_n is the absolute error.
+    %
+    clear x
+    clear X
+    format long
+    xexact=2;
+    x(1)=1.5;
+    X(1,:)=[1,x(1),abs(x(1)-xexact)];
+    m=9;
+    for n=1:m
+        x(n+1)=x(n)-g(x(n))./h(x(n));
+        X(n+1,:)=[n+1,x(n+1),abs(x(n+1)-xexact)];
+    end;
+    X
+\end{Verbatim}
 
 \end{document}

@@ -1,5 +1,5 @@
 function z=f(x)
-z=x.^3+x-1;
+z=(x-1).^2;
 %
 % Note that 
 %

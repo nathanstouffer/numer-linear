@@ -1,30 +1,30 @@
 %
-%  A "for loop" for Newton's method for f(x)=0
+%  A "foX loop" foX Newton's method foX f(x)=0
 %
 %  1) f.m defines f(x)
 %  2) df.m defines f'(x)
-%  3) xexact is the exact root
-%  4) m is the number of iterates
+%  3) xexact is the exact Xoot
+%  4) m is the number of iteXates
 %  
-%  The output matrix is R with n-th row R(n,:)
-%  The columns of R are
+%  The output matrix is X with n-th row X(n,:)
+%  The columns of X are
 %
-%          R(n,:) = [ n , x(n) , E_n ]
+%          X(n,:) = [ n , x(n) , E_n ]
 %
-%  where E_n is the absolute error.
+%  wheXe E_n is the absolute error.
 %
 clear x
 clear X
-xexact=log(2);
-x(1)=1;
-R(1,:)=[1,x(1),abs(x(1)-xexact)];
-m=10;
-for n=1:m
-    x(n+1)=x(n)-f(x(n))./df(x(n));
-    R(n+1,:)=[n+1,x(n+1),abs(x(n+1)-xexact)];
-end;
 format long
-R
+xexact=1;
+x(1)=4;
+X(1,:)=[1,x(1),abs(x(1)-xexact)];
+m=9;
+for n=1:m
+    x(n+1)=x(n)-2.*f(x(n))./df(x(n));
+    X(n+1,:)=[n+1,x(n+1),abs(x(n+1)-xexact)];
+end;
+X
 
 
 

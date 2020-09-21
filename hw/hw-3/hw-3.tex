@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+
+\usepackage{../linear}
+
+\begin{document}
+
+\coverpage{3}
+
+% hw problem 1 -----------------------------------------------------------------
+
+\begin{exercise}{1}
+    \problem{
+        The Secant method for finding roots of $f(x) = 0$ is defined by
+        $$ x_{n+2} = x_{n+1} - \dfrac{f(x_{n+1}) f(x_{n+1} - x_n)}{f(x_{n+1} - f(x_n))} $$
+        where $x_1$ and $x_2$ are specified initial guesses.
+        Write matlab code to solve the following problem using the Secant method:
+        $$ f(x) = exp(x) - ln(x+4) \hspace{4em} x_1 = 1 \hspace{1em} x_2 = 0.5 $$
+        Since the root is not known, we can't compute the exact error.
+        Instead, we shall use the difference in successive $x_n$ values as a measure of convergence
+        $$ E_n = | x_n - x_{n-1} | $$
+        Include the code and an output of $R$ showing convergence.
+        As before, $R$ has $n, x(n), E(n)$ as the $n^{th}$ row.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 2 -----------------------------------------------------------------
+
+\begin{exercise}{2}
+    \problem{
+        We illustrate by way of simple systems how solutions of $A \boldx = \textbf{b}$ can change dramatically when we approximate $\boldb$.
+        Below $M$ is some very large number. \\\\
+        \indent (a) Use Gauss elimination to find the exact solution of $A\boldx = \boldb$ where
+        $$ A = \begin{bmatrix} 2 & 2M \\ 1 & M+1 \end{bmatrix} \hspace{3em}
+            \boldb = \begin{pmatrix} 2+6M \\ 4 + 3M \end{pmatrix} $$ \\\\
+        \indent (b) When $M$ is large $\boldb \approx (2, 1)^T$.
+        Resolve the system with this new appproximate $\boldb$.
+        Are the \\ \indent \hspace{1.35em} solutions in (a) and (b) close? \\\\
+        Note: simplify your answers.
+        If done correctly, the solutions $\boldx$ do not depend on $M$.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 3 -----------------------------------------------------------------
+
+\begin{exercise}{3}
+    \problem{
+        Consider the non-symmetric matrix
+        $$ A = \begin{bmatrix} 1 & 4 & 1 \\ 4 & 9 & 1 \\ 2 & 1 & 2 \end{bmatrix} $$
+        $L, U, D$ are lower unit triangular, upper unit triangular, and diagonal matrices respectively.
+        By convention, a $~$ indicates that a matrix need not have ones on the diagonal. \\\\
+        \indent (a) $A = L \tilde{U}$ \\\\
+        \indent (b) $A = LDU$
+        \indent (c) Note that $det(AB) = det(A)det(B)$ and the determinant of triangular matrices equals the product of its diagonal elements.
+        Use these face to compute $det(A) = det(L) det(\tilde{U})$.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 4 -----------------------------------------------------------------
+
+\begin{exercise}{4}
+    \problem{
+        Below is a symmetric positive definite matrix:
+        $$ A = A^T  = \begin{bmatrix} 4 & -2 & 2 \\ -2 & 2 & 0 \\ 2 & 0 & 3 \end{bmatrix} $$
+        Find the Cholesky factorization $ A = \tilde{L}^T \tilde{L} $
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+\end{document}

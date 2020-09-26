@@ -1,0 +1,372 @@
+\documentclass[11pt]{article}
+
+\usepackage{../linear}
+
+\begin{document}
+
+\coverpage{3}
+
+% hw problem 1 -----------------------------------------------------------------
+
+\begin{exercise}{1}
+    \problem{
+        The Secant method for finding roots of $f(x) = 0$ is defined by
+        $$ x_{n+2} = x_{n+1} - \dfrac{f(x_{n+1}) f(x_{n+1} - x_n)}{f(x_{n+1} - f(x_n))} $$
+        where $x_1$ and $x_2$ are specified initial guesses.
+        Write matlab code to solve the following problem using the Secant method:
+        $$ f(x) = exp(x) - ln(x+4) \hspace{4em} x_1 = 1 \hspace{1em} x_2 = 0.5 $$
+        Since the root is not known, we can't compute the exact error.
+        Instead, we shall use the difference in successive $x_n$ values as a measure of convergence
+        $$ E_n = | x_n - x_{n-1} | $$
+        Include the code and an output of $R$ showing convergence.
+        As before, $R$ has $n, x(n), E(n)$ as the $n^{th}$ row.
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+% hw problem 2 -----------------------------------------------------------------
+
+\begin{exercise}{2}
+    \problem{
+        We illustrate by way of simple systems how solutions of $A \boldx = \textbf{b}$ can change dramatically when we approximate $\boldb$.
+        Below $M$ is some very large number. \\\\
+        \indent (a) Use Gauss elimination to find the exact solution of $A\boldx = \boldb$ where
+        $$ A = \begin{bmatrix} 2 & 2M \\ 1 & M+1 \end{bmatrix} \hspace{3em}
+            \boldb = \begin{pmatrix} 2+6M \\ 4 + 3M \end{pmatrix} $$
+        \indent \hspace{1.35em} Note: simplify your answers.
+        If done correctly, the solutions $\boldx$ do not depend on $M$. \\\\
+        \indent (b) When $M$ is large $\boldb \approx \boldb _{new} = M \begin{pmatrix} 6 \\ 3 \end{pmatrix} $.
+        Resolve the system with this new appproximate $\boldb _{new}$. \\
+        \indent \hspace{1.35em} Are the solutions in (a) and (b) close? \\\\
+    }
+    \answer{
+        \begin{enumerate}[label=(\alph*)]
+            \item First we setup the augmented matrix $[A \mid \boldb]$:
+            $$ \begin{bmatrix}
+                2 & 2M &  \mid & 2 + 6M \\
+                1 & M+1 & \mid & 4 + 3M
+            \end{bmatrix}
+            \sim
+            \begin{bmatrix}
+                2 & 2M & \mid & 2 + 6M \\
+                0 & 1  & \mid & 3
+            \end{bmatrix} $$
+            So $x_2 = 3$ and $2x_1 + 2Mx_2 = 2x_1 + 6M = 2 + 6M \implies x_1 = 1$.
+            So the exact solution to $[A \mid \boldb ]$ is $\boldx = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$.
+            \item For large $M$, we can approximate $\boldb = \boldb _{new} = M \begin{pmatrix} 6 \\ 3 \end{pmatrix}$ and then solve $A \boldx = \boldb _{new}$.
+            To do this, we set up the augmented matrix $ [A \mid \boldb _{new}] $:
+            $$ \begin{bmatrix}
+                2 & 2M &  \mid & 6M \\
+                1 & M+1 & \mid & 3M
+            \end{bmatrix}
+            \sim
+            \begin{bmatrix}
+                2 & 2M & \mid & 6M \\
+                0 & 1  & \mid & 0
+            \end{bmatrix} $$
+            Then $x_2 = 0$ and $2x_1 + 2Mx_2 = 2x_1 = 6M \implies x_1 = 3M$.
+            So the exact solution to $[A \mid \boldb _{new}]$ is $\boldx = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 3M \\ 0 \end{pmatrix}$. \parspace
+            The solutions from (a) and (b) are not close at all, this is a result of our approximation of $\boldb$.
+        \end{enumerate}
+    }
+\end{exercise}
+
+% hw problem 3 -----------------------------------------------------------------
+
+\begin{exercise}{3}
+    \problem{
+        Consider the non-symmetric matrix
+        $$ A = \begin{bmatrix} 1 & 4 & 1 \\ 4 & 9 & 1 \\ 2 & 1 & 2 \end{bmatrix} $$
+        $L, U, D$ are lower unit triangular, upper unit triangular, and diagonal matrices respectively.
+        By convention, a tilde indicates that a matrix need not have ones on the diagonal. \\\\
+        \indent (a) $A = L \tilde{U}$ \\\\
+        \indent (b) $A = LDU$ \\\\
+        \indent (c) Note that $det(AB) = det(A)det(B)$ and the determinant of triangular matrices equals the \\ \indent \hspace{1.2em} product of its diagonal elements.
+        Use these face to compute $det(A) = det(L) det(\tilde{U})$.
+    }
+    \answer{
+        \begin{enumerate}[label=(\alph*)]
+            \item We wish to find matrices $L, \tilde{U}$ such that $A = L \tilde{U}$.
+            To this end, we row reduce $A$ via the elementary matrices $E_1$ and $E_2$:
+            $$ E_1 =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                -4 & 1 & 0 \\
+                -2 & 0 & 1
+            \end{bmatrix}
+            \hspace{4em}
+            E_2 =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & -1 & 1
+            \end{bmatrix} $$
+            $$ E_2 E_1 A =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & -1 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                -4 & 1 & 0 \\
+                -2 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                4 & 9 & 1 \\
+                2 & 1 & 2
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                0 & -7 & -3 \\
+                0 & 0 & 3
+            \end{bmatrix}
+            = \tilde{U}
+            $$
+            Now let $L = E_1^{-1} E_2^{-1}$:
+            $$ L = E_1^{-1} E_2^{-1} =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                4 & 1 & 0 \\
+                2 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 1 & 1
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                4 & 1 & 0 \\
+                2 & 1 & 1
+            \end{bmatrix}
+            $$
+            To retain equality with $A$, we can just left multiply $\tilde{U}$ by $L$: $L\tilde{U} = E_1^{-1} E_2^{-1} E_2 E_1 A = A$.
+            So, we have the desired factorization:
+            $$ A = L \tilde{U} =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                4 & 1 & 0 \\
+                2 & 1 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                0 & -7 & -3 \\
+                0 & 0 & 3
+            \end{bmatrix}
+            $$
+            \item We now want to find matrices $L, D, U$ such that $A = LDU$.
+            To do this, we will use the result from part (a).
+            Let $L$ and $\tilde{U}$ be defined as in (a).
+            Then let $D$ be the diagonal of $\tilde{U}$ and $D^{-1}$ be the inverse of $D$:
+            $$ D =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & -7 & 0 \\
+                0 & 0 & 3
+            \end{bmatrix}
+            \hspace{4em}
+            D^{-1} =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & -1/7 & 0 \\
+                0 & 0 & 1/3
+            \end{bmatrix} $$
+            Since $DD^{-1} = I$, we can say that $\tilde{U} = D D^{-1} \tilde{U} = D U$ where $U = D^{-1} \tilde{U}$.
+            Note that $U = D^{-1} U$ is an upper unit triangular matrix:
+            $$ U = D^{-1} \tilde{U} =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & -1/7 & 0 \\
+                0 & 0 & 1/3
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                0 & -7 & -3 \\
+                0 & 0 & 3
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                0 & 1 & 3/7 \\
+                0 & 0 & 1
+            \end{bmatrix}
+            $$
+            Since $L$ is unit lower triangular, $D$ is diagonal, and $U$ is upper unit triangular, we have the desired factorization $A = LDU$:
+            $$ A = LDU =
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                4 & 1 & 0 \\
+                2 & 1 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & -7 & 0 \\
+                0 & 0 & 3
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 4 & 1 \\
+                0 & 1 & 3/7 \\
+                0 & 0 & 1
+            \end{bmatrix} $$
+            \item Now we use the fact that $det(AB) = det(A) det(B)$ (for matrices $A, B$) to compute $det(A)$.
+            We know $det(A) = det(L) det(\tilde{U})$.
+            Since $L$ and $\tilde{U}$ are both triangular matrices, their determinants are the products of the diagonals: $det(L) = 1$ and $det(\tilde{U}) = 1 * -7 * 3 = -21$.
+            So $det(A) = 1 * -21 = -21$.
+        \end{enumerate}
+    }
+\end{exercise}
+
+% hw problem 4 -----------------------------------------------------------------
+
+\begin{exercise}{4}
+    \problem{
+        Below is a symmetric positive definite matrix:
+        $$ A = A^T  = \begin{bmatrix} 4 & -2 & 2 \\ -2 & 2 & 0 \\ 2 & 0 & 3 \end{bmatrix} $$
+        Find the Cholesky factorization $ A = \tilde{L}^T \tilde{L} $
+    }
+    \answer{
+        Towards finding the Cholesky factorization of $A = A^T$, we first find the $L \tilde{U}$ factorization of $A$.
+        As in Problem 3, we will introduce elementary matrices and preserve equality with $A$ by mulitiplying by the inverses:
+        $$ E_1 =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            1/2 & 1 & 0 \\
+            -1/2 & 0 & 1
+        \end{bmatrix}
+        \hspace{4em}
+        E_2 =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & -1 & 0
+        \end{bmatrix}
+        $$
+
+        $$ E_1^{-1} E_2^{-1} E_2 E_1 A =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            -1/2 & 1 & 0 \\
+            1/2 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            1/2 & 1 & 0 \\
+            -1/2 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & -1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & -2 & 2 \\
+            -2 & 2 & 0 \\
+            2 & 0 & 3
+        \end{bmatrix}
+        $$
+        By combining $E_2^{-1} E_1^{-1} = L$ and $E_2 E_1 A = \tilde{U}$, we get
+        $$ A = L \tilde{U} =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            -1/2 & 1 & 0 \\
+            1/2 & 1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & -2 & 2 \\
+            0 & 1 & 1 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+        Now let $D$ be the diagonal of $\tilde{U}$ and $D^{-1}$ be the inverse of $D$:
+        $$ D =
+        \begin{bmatrix}
+            4 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \hspace{4em}
+        D^{-1} =
+        \begin{bmatrix}
+            1/4 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+        $D D^{-1} = I$ so we can say that $A = L \tilde{U} = L D D^{-1} \tilde{U} = L D U_1$ where $U_1 = D^{-1} \tilde{U}$:
+        $$ D^{-1} \tilde{U} =
+        \begin{bmatrix}
+            1/4 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & -2 & 2 \\
+            0 & 1 & 1 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            1 & -1/2 & 1/2 \\
+            0 & 1 & 1 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+        But then $U_1 = L^T$, so we really have the matrix factorization $A = L D L^T$.
+        This is close to the desired factorization $A = \tilde{L} \tilde{L}^T$.
+        To get the desired factorization, let $D^{1/2}$ be the matrix where each element is the square root of the corresponding element in $D$:
+        $$D^{1/2} =
+        \begin{bmatrix}
+            2 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+        Note that $D^{1/2} D^{1/2} = D$ so we can write the factorization as $A = L D^{1/2} D^{1/2} L^T$.
+        Let us now compute $L D^{1/2}$:
+        $$ L D^{1/2} =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            -1/2 & 1 & 0 \\
+            1/2 & 1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2 & 0 & 0 \\
+            -1 & 1 & 0 \\
+            1 & 1 & 1 \\
+        \end{bmatrix}
+        $$
+        We can just compute $D^{1/2} L^T$ as $(L D^{1/2})^T$ because $(L D^{1/2})^T = D^{1/2T} L^T = D^{1/2} L^T $ since $D^{1/2}$ is diagonal.
+        But then $A = L D^{1/2} D^{1/2} L^T = (L D^{1/2}) (L D^{1/2})^T$ so setting $\tilde{L} = L D^{1/2}$ gives us the desired factorization $A = \tilde{L} \tilde{L}^T$:
+        $$ A = \tilde{L} \tilde{L}^T =
+        \begin{bmatrix}
+            2  & 0 & 0 \\
+            -1 & 1 & 0 \\
+            1  & 1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2 & -1 & 1 \\
+            0 &  1 & 1 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        $$
+    }
+\end{exercise}
+
+\end{document}

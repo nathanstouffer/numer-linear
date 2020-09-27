@@ -1,17 +1,17 @@
 %
-%  A "foX loop" foX Newton's method foX f(x)=0
+%  A "for loop" implementing Newton's method for finding f(x)=0
 %
 %  1) f.m defines f(x)
 %  2) df.m defines f'(x)
-%  3) xexact is the exact Xoot
-%  4) m is the number of iteXates
+%  3) xexact is the exact root
+%  4) m is the number of iterates
 %  
 %  The output matrix is X with n-th row X(n,:)
 %  The columns of X are
 %
 %          X(n,:) = [ n , x(n) , E_n ]
 %
-%  wheXe E_n is the absolute error.
+%  where E_n is the absolute error.
 %
 clear x
 clear X

@@ -22,9 +22,63 @@
         As before, $R$ has $n, x(n), E(n)$ as the $n^{th}$ row.
     }
     \answer{
-
+        I wrote some matlab code that implements the Secant method for finding roots.
+        Using $f(x) = \exp (x) - \ln (x+4)$ with $x_1 = 1$ and $x_2 = 0.5$, I produced the following table:
+        \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            $n$ &  $x_n$             & $E_n = |x_n - x_{n-1}|$ \\ \hline
+            2   &  0.500000000000000 &  0.500000000000000 \\ \hline
+            3   &  0.424992808749178 &  0.075007191250822 \\ \hline
+            4   &  0.393980247342822 &  0.031012561406356 \\ \hline
+            5   &  0.391919950214853 &  0.002060297127969 \\ \hline
+            6   &  0.391877859305723 &  0.000042090909130 \\ \hline
+            7   &  0.391877805146257 &  0.000000054159467 \\ \hline
+            8   &  0.391877805144861 &  0.000000000001396 \\ \hline
+        \end{tabular}
+    \end{center}
+    The matlab code used to produce the above table is on the next page.
     }
 \end{exercise}
+
+\newpage
+\begin{Verbatim}
+%  A "for loop" implementing the Secant method for finding f(x)=0
+%
+%  1) the function f defines f(x)
+%  2) xexact is not known, so the error is computed
+%     as the difference of consecutive terms
+%  3) tolerance is the error we require to stop
+%     iterating the sequence
+%
+%  The output matrix is R with n-th row R(n,:)
+%  The columns of R are
+%
+%          R(n,:) = [ n , x(n) , E_n ]
+%
+%  where E_n is difference between consecutive terms in the sequence.
+%
+clear x;
+clear R;
+format long;
+x(1)=1;                     % initial guesses for the roots
+x(2)=0.5;
+tolerance=1e-08;            % maximum error to stop iterating
+n=2;                        % set current iteration value
+E(n)=abs(x(n)-x(n-1));      % compute initial "error"
+R(1,:)=[n,x(n),E(n)];
+while E(n) > tolerance
+    x(n+1)=x(n) - f(x(n))*(x(n)-x(n-1))/(f(x(n))-f(x(n-1)));
+    E(n+1)=abs(x(n+1)-x(n));
+    R(n,:)=[n+1,x(n+1),E(n+1)];
+    n=n+1;                  % update number of iterations
+end;
+R
+
+function val = f(x)
+    val = exp(x) - log(x+4);
+end
+\end{Verbatim}
 
 % hw problem 2 -----------------------------------------------------------------
 

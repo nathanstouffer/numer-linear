@@ -10,7 +10,17 @@
 
 \begin{exercise}{1}
     \problem{
-        Compute
+        Compute $ \| A \| _1$, $ \| A \| _2$, and $ \| A \| _\infty$ where
+        $$ A =
+        \begin{bmatrix}
+            3 & 1 & 1 \\
+            0 & 2 & 0 \\
+            1 & -1 & 3
+        \end{bmatrix}
+        $$
+        For $ \| A \| _2 $ you may use the fact that the characteristic polynomial of $A^T A$ is
+        $$ P(\lambda) = \det (A^T A - \lambda I) = (\lambda - 2)(\lambda - 8)(\lambda - 16) $$
+        Use the fact that $ \| A \| _2 = \sqrt{\lambda _{max}} $ where $\lambda _{max}$ is the largest eigenvalue of $A^T A$.
     }
     \answer{
 
@@ -23,7 +33,28 @@
 
 \begin{exercise}{2}
     \problem{
-        Recall
+        Recall that the condition number $\kappa (A)$ of a matrix $A$ is defined by
+        $$ \kappa (A) = \| A \| \hspace{0.43em} \| A ^{-1} \| $$
+        The main theoerm conclusion related to the condition number is that
+        $$ \dfrac{\| x - \xhat \|}{\| x \|} \leq \kappa (A) \dfrac{\| b - \bhat\|}{\| b \|} $$
+        where $x$ and $\xhat$ are solutions to $Ax = b$ and $A\xhat = \bhat$.
+        When $\kappa (A)$ is large, the system is said to be ill-conditioned and even small relative errors in $b$ can result in large relative errors in the solution $x$.
+        In this problem
+        $$ A = \begin{bmatrix} 1 & 2 \\ 3 & 6.01 \end{bmatrix}
+        \hspace{2em}
+        b = \begin{pmatrix} 3 \\ 9.01 \end{pmatrix}
+        \hspace{2em}
+        \bhat = \begin{pmatrix} 3 \\ 9 \end{pmatrix}
+        $$
+        and all norms are the $\infty$-norm as in $\| A \| _\infty$.
+        \begin{enumerate}[label=\alph*)]
+            \item Compute $A^{-1}$ exactly.
+            \item Compute $x$ and $\xhat$ exactly.
+            \item Find the relative errors below. Do they differ by a lot?
+            $$ e_x = \dfrac{\| x - \xhat \|}{\| x \|} \hspace{2em} e_b = \dfrac{\| b - \bhat \|}{\| b \|} $$
+            \item Compute the condition number
+        \end{enumerate}
+        $$ \kappa (A) = \| A \| _\infty \| A^{-1} \| _\infty $$
     }
     \answer{
 
@@ -34,7 +65,24 @@
 
 \begin{exercise}{3}
     \problem{
-        Recall
+        Recall the general iterative technique for solving $Ax = b$ has the split equation
+        $$ Q x_{n+1} = (Q - A) x_n + b $$
+        which may be written as
+        $$ x_{n+1} = K x_n + c \hspace{2em} K = I - Q^{-1}A \hspace{2em} c = Q^{-1} b $$
+        In all of the following questions, we have
+        $$ A = \begin{bmatrix} 20 & 1 \\ -1/2 & 2 \end{bmatrix}
+        \hspace{2em}
+        b = \begin{pmatrix} 120 \\ 159 \end{pmatrix}
+        \hspace{2em}
+        x_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+        $$
+        \begin{enumerate}[label=\alph*)]
+            \item Use the matlab function ``Iterate.m'' to approximat ethe solution of $Ax = b$ using the Gauss-Seidel, Jacobi, and Richardson iteration techniques for $N = 10$ iterates each.
+            For each method, print out the iteration matrix $x$ and state if the method converges.
+            \item For the Gauss-Seidel technique, $\| K \| _1 = 1/16$.
+            Use this and the fact that $\| e_{n+1} \| \leq \| K \| ^n \| e_0 \|$  to find the minimum value for $n$ that ensures the following relative error tolerance:
+        \end{enumerate}
+        $$ \dfrac{\| x_{n+1} - x \|_1}{\| x \| _1} < 10^{-12} $$
     }
     \answer{
 

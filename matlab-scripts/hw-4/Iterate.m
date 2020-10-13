@@ -34,6 +34,7 @@ function [x,NORM_K,eig_K]=Iterate(A,b,N,Method,x0,w)
 %
 %
 n=length(b);
+format long;
 %
 switch Method
   case('jacobi')

@@ -145,15 +145,79 @@
         x_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
         $$
         \begin{enumerate}[label=\alph*)]
-            \item Use the matlab function ``Iterate.m'' to approximat ethe solution of $Ax = b$ using the Gauss-Seidel, Jacobi, and Richardson iteration techniques for $N = 10$ iterates each.
+            \item Use the matlab function ``Iterate.m'' to approximate the solution of $Ax = b$ using the Gauss-Seidel, Jacobi, and Richardson iteration techniques for $N = 10$ iterates each.
             For each method, print out the iteration matrix $x$ and state if the method converges.
             \item For the Gauss-Seidel technique, $\| K \| _1 = 1/16$.
-            Use this and the fact that $\| e_{n+1} \| \leq \| K \| ^n \| e_0 \|$  to find the minimum value for $n$ that ensures the following relative error tolerance:
+            Use this and the fact that $\| e_{n+1} \| \leq \| K \| ^n \| e_0 \| = \| K \| ^n \| x \|$ (when $x_0 = \mathbf{0}$)  to find the minimum value for $n$ that ensures the following relative error tolerance:
         \end{enumerate}
         $$ \dfrac{\| x_{n+1} - x \|_1}{\| x \| _1} < 10^{-12} $$
     }
     \answer{
-
+        \begin{enumerate}[label=\alph*)]
+            \item The iteration matrix for Gauss-Seidel technique.
+                This method converges.
+                    \begin{center}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        $x_1$             &   $x_2$             \\ \hline
+                        0                 &   0                 \\ \hline
+                        6.000000000000000 &  81.000000000000000 \\ \hline
+                        1.950000000000000 &  79.987499999999997 \\ \hline
+                        2.000625000000000 &  80.000156250000003 \\ \hline
+                        1.999992187499999 &  79.999998046875007 \\ \hline
+                        2.000000097656249 &  80.000000024414064 \\ \hline
+                        1.999999998779296 &  79.999999999694822 \\ \hline
+                        2.000000000015259 &  80.000000000003823 \\ \hline
+                        1.999999999999809 &  79.999999999999957 \\ \hline
+                        2.000000000000002 &  80.000000000000000 \\ \hline
+                    \end{tabular}
+                \end{center}
+                The iteration matrix for Jacobi technique.
+                This method converges.
+                    \begin{center}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        $x_1$             &   $x_2$             \\ \hline
+                        0                 &   0                 \\ \hline
+                        6.000000000000000 &  79.500000000000000 \\ \hline
+                        2.025000000000000 &  81.000000000000000 \\ \hline
+                        1.950000000000000 &  80.006249999999994 \\ \hline
+                        1.999687500000000 &  79.987499999999997 \\ \hline
+                        2.000625000000000 &  79.999921874999998 \\ \hline
+                        2.000003906250000 &  80.000156250000003 \\ \hline
+                        1.999992187499999 &  80.000000976562504 \\ \hline
+                        1.999999951171874 &  79.999998046875007 \\ \hline
+                        2.000000097656249 &  79.999999987792975 \\ \hline
+                    \end{tabular}
+                \end{center}
+                The iteration matrix for Richardson technique (note that each value is multiplied by $10^{12}$).
+                This method does not converge.
+                    \begin{center}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        $x_1$              &  $x_2$             \\ \hline
+                        0                  &  0                 \\ \hline
+                        0.000000000120000  &  0.000000000159000 \\ \hline
+                        -0.000000002319000 &  0.000000000060000 \\ \hline
+                        0.000000044121000  & -0.000000001060500 \\ \hline
+                        -0.000000837118500 &  0.000000023280000 \\ \hline
+                        0.000015882091500  & -0.000000441680250 \\ \hline
+                        -0.000301317938250 &  0.000008382885000 \\ \hline
+                        0.005716658061750  & -0.000159041695125 \\ \hline
+                        -0.108457461358125 &  0.003017370885000 \\ \hline
+                        2.057674395039375  & -0.057246101405062 \\ \hline
+                    \end{tabular}
+                \end{center}
+            \item We now want to know the smallest $n$ that satisfies $ \dfrac{\| x_{n+1} - x \| _1}{\| x \| _1} < 10^{-12}$.
+            Since we have chosen $x_0 = \mathbf{0}$, we can say that
+            $$ \| x_{n+1} - x \| _1 = \| e_{n+1} \| _1 \leq \| K \| ^n_1 \| e_0 \| _1 = \| K \| ^n_1 \| x \| _1 $$
+            But then we can simplify:
+            $$ \dfrac{\| x_{n+1} - x \| _1}{\| x \| _1}  \leq \dfrac{\| K \| _1^n \| x \| _1}{\| x \| _1} = \| K \| _1 ^n $$
+            So we need only wonder what is the smallest $n$ that satisfies $ \| K \| ^n_1 < 10^{-12} $:
+            $$ \| K \| _1 ^n = 1/16^n < 10^{-12} = 1/10^{12} \iff 16^n > 10^{12} \iff n > \lfloor 12 \log _{16} (10) \rfloor $$
+            But $\lfloor 12 \log _{16} (10) \rfloor = \lfloor 12 \dfrac{\log 10}{\log 16} \rfloor = \lfloor 12 / \log 16 \rfloor = 9$ so we must have $n > 9$.
+            Therefore, the smallest $n$ that satisfies $ \dfrac{\| x_{n+1} - x \| _1}{\| x \| _1} < 10^{-12}$ is $n = 10$.
+        \end{enumerate}
     }
 \end{exercise}
 

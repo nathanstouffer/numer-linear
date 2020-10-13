@@ -23,7 +23,12 @@
         Use the fact that $ \| A \| _2 = \sqrt{\lambda _{max}} $ where $\lambda _{max}$ is the largest eigenvalue of $A^T A$.
     }
     \answer{
-
+        First we compute $ \| A \| _1$:
+        $$ \| A \| _1 = \max _j \sum _{i=1}^2 | a_{ij} | = \max \{ 4, 4, 4 \} = 4 $$
+        Then we compute $ \| A \| _2$ (note that $\lambda_{max}$ is the largest eigenvalue of $A^T A$):
+        $$ \| A \| _2 = \sqrt{\lambda_{max}} = \sqrt{16} = 4 $$
+        Finally, we compute $ \| A \| _\infty$:
+        $$ \| A \| _\infty = \max _i \sum _{j=1}^2 | a_{ij} | = \max \{ 5, 2, 5 \} = 5 $$
     }
 \end{exercise}
 
@@ -57,7 +62,70 @@
         $$ \kappa (A) = \| A \| _\infty \| A^{-1} \| _\infty $$
     }
     \answer{
-
+        \begin{enumerate}[label=\alph*)]
+            \item We compute the exact inverse of $A$.
+            Note that $\det A = 1/100$.
+            Then the exact inverse of $A$ is
+            $$A^{-1} = \dfrac{1}{100} \begin{bmatrix} 6.01 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} 601 & -200 \\ -300 & 100 \end{bmatrix} $$
+            \item We now compute $x$ and $\xhat$ exactly.
+            $$
+            x = A^{-1} b =
+            \begin{bmatrix}
+                601 & -200 \\
+                -300 & 100
+            \end{bmatrix}
+            \begin{pmatrix}
+                3 \\ 9.01
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1803 - 1802 \\ -900 + 901
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1 \\ 1
+            \end{pmatrix}
+            $$ \\
+            $$
+            \xhat = A^{-1} \bhat =
+            \begin{bmatrix}
+                601 & -200 \\
+                -300 & 100
+            \end{bmatrix}
+            \begin{pmatrix}
+                3 \\ 9
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1803 - 1800 \\ -900 + 90
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                3 \\ 0
+            \end{pmatrix}
+            $$
+            \item We now compute and compare the relative errors $e_x$ and $e_b$.
+            $$
+            e_x = \dfrac{\| x - \xhat \|}{\| x \|} =
+            \dfrac{\| \begin{pmatrix} 1 \\ 1 \end{pmatrix} - \begin{pmatrix} 3 \\ 0 \end{pmatrix} \| }{\| \begin{pmatrix} 1 \\ 1 \end{pmatrix} \|} =
+            \dfrac{\| \begin{pmatrix} -2 \\ 1 \end{pmatrix} \| }{\| \begin{pmatrix} 1 \\ 1 \end{pmatrix} \|} =
+            \dfrac{2}{1} = 2
+            $$ \\
+            $$
+            e_b = \dfrac{\| b - \bhat \|}{\| b \|} =
+            \dfrac{\| \begin{pmatrix} 3 \\ 9.01 \end{pmatrix} - \begin{pmatrix} 3 \\ 9 \end{pmatrix} \| }{\| \begin{pmatrix} 3 \\ 9.01 \end{pmatrix} \|} =
+            \dfrac{\| \begin{pmatrix} 0 \\ 0.01 \end{pmatrix} \| }{\| \begin{pmatrix} 3 \\ 9.01 \end{pmatrix} \|} =
+            \dfrac{0.01}{9.01} = \dfrac{1}{901}
+            $$
+            The relative errors differ by a large amount.
+            The relative error in our input variable is $e_b = 1/901 \approx 0.11\% $ which is rather small.
+            However, our relative output error is $e_x = 2 = 200\% $, which is much larger than our input error.
+            This suggests that our system is highly sensitive to small changes in initial conditions.
+            \item We now compute $\kappa (A) = \| A \| _\infty \| A^{-1} \| _\infty$.
+            Note that $ \| A \| _\infty = \max \{ 3, 9.01 \} = 9.01 $ and $\| A^{-1} \| _\infty = \max \{ 801, 400 \} = 801 $.
+            Then we can compute the condition number:
+            $$ \kappa (A) = \| A \| _\infty \| A^{-1} \| _\infty = 9.01 * 801 = 7217.01 $$
+        \end{enumerate}
     }
 \end{exercise}
 

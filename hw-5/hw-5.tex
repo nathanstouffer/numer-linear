@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+\usepackage{../linear}
+
+\begin{document}
+
+\coverpage{5}
+
+% hw problem 1 -----------------------------------------------------------------
+
+\begin{exercise}{1}
+    \problem{
+        Recall the Power Method algorithm is defined by:
+        $$ \boldy _n = A \boldx _n $$
+        $$ \lambda _n = \phi (\boldy _n) / \phi (\boldx _n) $$
+        $$ \boldx _{n+1} = \boldy _n / \| \boldy _n \| _2 $$
+        where $\phi (\boldz) = z_1 + z_2 + \triplecdot + z_n$ and $\boldz = (z_1, z_2, ..., z_n )$.
+        For most (but not all) initial guesses $x_0$, $\lambda _n$ will approach the dominant eigenvalue $\lambda$ of $A$ with $x_n$ being an approximation of the associated (unit) eigenvector.
+        \begin{enumerate}[label=\alph*)]
+            \item Let
+            $$ A = \begin{bmatrix} 7 & 3 \\ 3 & -1 \end{bmatrix}
+            \hspace{3em}
+            \boldx_0 = \begin{pmatrix} 1 \\ -3 \end{pmatrix} $$
+            Using hand calculations (no decimal approximations) only, compute in sequence $\boldy _0, \lambda _0, \boldx _1, \boldy _1, \lambda _1, \boldx _2$.
+            You should find $\boldx _1 = - \boldx _2$.
+            Is the method converging to the dominat eigenvalue?
+            Give some reasonable explanation.
+            \item Let
+            $$ A =
+            \begin{bmatrix}
+                16 & 2 & 4 \\
+                1 & 40 & -3 \\
+                0 & 3 & 5
+            \end{bmatrix}
+            \hspace{3em}
+            \boldx _0 =
+            \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}
+            $$
+            Use the posted \textit{Power.m} and \textit{phi.m} matlab scripts to approximate the dominatn eigenvalue using $N = 15$ iterates.
+            Include an extra column in the output matrix $R$ as follows.
+            $$ >> R = [ x', lambda(k), residual(k), abs(r-edom) ] $$
+            where $edom$ is the dominant eigenvalue.
+            You may find this value using the matlab statement
+            $$ >> evals = eig(A) $$
+            where $evals$ is a vector of all the eigenvalues of $A$.
+        \end{enumerate}
+        \hspace{0em}
+    }
+    \answer{
+
+    }
+\end{exercise}
+
+\newpage
+
+% hw problem 2 -----------------------------------------------------------------
+
+\begin{exercise}{2}
+    \problem{
+        Recall that the steepest descent algorithm for approximating the solution of $Ax = b$ (when $A = A^T$ is positive definite) is
+        $$\boldr _n = A\boldx - n - \boldb$$
+        $$\alpha _n = \dfrac{\boldr ^T_n \boldr _n}{\boldr ^T_n A \boldr _n} $$
+        $$\boldx _{n+1} = \boldx _n - \alpha \boldr _n $$
+        where $\boldr _n$ is the residual vector and $\boldx _n$ is the approximation of the solution $Ax = b$.
+        \begin{enumerate}[label=\alph*)]
+            \item Let
+            $$ A = \begin{bmatrix} 2 & 1/4 \\ 1/4 & 1/2 \end{bmatrix}
+            \hspace{2em}
+            \boldb = \begin{pmatrix} 1 \\ 2 \end{pmatrix}
+            \hspace{2em}
+            \boldx _0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} $$
+            First prove $A$ is postive definite adn then use hadn calculations (no decimal approximations) to compute in sequence $\boldr _0, \alpha _0, \boldx_1, \boldr _1, \alpha _1, \boldx _2$.
+            \item Use the code $steepest.m$ to approximate the solution of $Ax = b$ where $A \in \R ^{50 \times 50}$ is a tri-diagonal matrix.
+            The iterat output in $steepest.m$ is stored in the matrix $R$.
+            $$ R(n,:) = [n, xn', norm(en,2)];$$
+            The last comlumn of $R$ is the 2-norm of the absolute error.
+            Plot this absolute error versus iteration number for $N = 3000$ iterates.
+            Use matlab to do this.
+        \end{enumerate}
+        \hspace{0em}
+    }
+    \answer{
+        \begin{enumerate}[label=\alph*)]
+            \item
+        \end{enumerate}
+    }
+\end{exercise}
+
+\end{document}

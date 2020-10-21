@@ -47,7 +47,16 @@
         \hspace{0em}
     }
     \answer{
-
+        \begin{enumerate}[label=\alph*)]
+            \item Now we show the computations for $y_0, \lambda _0, x_1, y_1, \lambda _1, x_2$:
+            $$ y_0 = A x_0 = \begin{bmatrix} 7 & 3 \\ 3 & -1 \end{bmatrix} \begin{pmatrix} 1 \\ -3 \end{pmatrix} = \begin{pmatrix} 7-9 \\ 3+3 \end{pmatrix} = \begin{pmatrix} -2 \\ 6 \end{pmatrix} $$
+            $$ \lambda _0 = \phi(y_0) / \phi(x_0) = \dfrac{-2+6}{1+-3} = \dfrac{4}{-2} = -2 $$
+            $$ x_1 = \dfrac{y_0}{\| y_0 \| _2} = \dfrac{1}{\sqrt{2^2 + 6^2}} \begin{pmatrix} -2 \\ 6 \end{pmatrix} = \dfrac{1}{2\sqrt{10}} \begin{pmatrix} -2 \\ 6 \end{pmatrix} = \begin{pmatrix} -1/\sqrt{10} \\ 3/\sqrt{10} \end{pmatrix} $$
+            $$ y_1 = A x_1 = \begin{bmatrix} 7 & 3 \\ 3 & -1 \end{bmatrix} \begin{pmatrix} -1/\sqrt{10} \\ 3 / \sqrt{10} \end{pmatrix} = \begin{pmatrix} -7/\sqrt{10} + 9/\sqrt{10} \\ -3/\sqrt{10} - 3/\sqrt{10} \end{pmatrix} = \begin{pmatrix} 2/\sqrt{10} \\ -6/\sqrt{10} \end{pmatrix} $$
+            $$ \lambda _1 = \phi (y_1) / \phi (x_1) = \dfrac{2/\sqrt{10} - 6\sqrt{10}}{-1/\sqrt{10} + 3/\sqrt{10}} = \dfrac{-4/\sqrt{10}}{2/\sqrt{10}} = -2 $$
+            $$ x_2 = \dfrac{y_1}{\| y_1 \| _2} = \dfrac{1}{\sqrt{(4/\sqrt{10})^2 + (6/\sqrt{10})^2}} \begin{pmatrix} 2/\sqrt{10} \\ -6/\sqrt{10} \end{pmatrix} = \dfrac{1}{2} \begin{pmatrix} 2/\sqrt{10} \\ -6/\sqrt{10} \end{pmatrix} = \begin{pmatrix} 1/\sqrt{10} \\ -3/\sqrt{10} \end{pmatrix} $$
+            TODO: explanation of why same vector stuff
+        \end{enumerate}
     }
 \end{exercise}
 
